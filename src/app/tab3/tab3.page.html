@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Bluetooth Control
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Toggle Bluetooth</ion-label>
+    <ion-toggle [(ngModel)]="bluetooth" (ionChange)="toggleBT()" ></ion-toggle>
+    {{ bluetooth }}
+  </ion-item>
+  <ion-label>{{value}}</ion-label>
+</ion-content>

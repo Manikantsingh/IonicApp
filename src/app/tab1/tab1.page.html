@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Audio Video Recorder
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        <ion-button expand="block" fill="outline" primary (click)="startRecord()" *ngIf="!recording"><ion-icon name="mic"></ion-icon> Start Recording</ion-button>
+        <ion-button expand="block" fill="outline" primary (click)="stopRecord()" *ngIf="recording"><ion-icon name="mic-off"></ion-icon> Stop Record</ion-button>
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-card>
+        <ion-item  *ngFor="let audio of audioList; index as i;">
+            <ion-icon name="musical-note"></ion-icon>
+          <ion-label>{{audio.filename}}</ion-label>
+          <ion-button  item-end large (click)="playAudio(audio.filename, i)"><ion-icon name="play"></ion-icon></ion-button>
+          <ion-button  item-end large (click)="clearAll(i)"><ion-icon name="close-circle"></ion-icon></ion-button>      
+        </ion-item>
+    </ion-card>
+  </ion-list>
+  <!-- <ion-button (click)="startVideo()">VIDEO</ion-button> -->
+
+  <ion-card>
+      <ion-card-content>
+        <ion-card-title>
+          <ion-row>
+            <!-- <ion-col>
+              <ion-button full (click)="captureAudio()">Capture Audio</ion-button>
+            </ion-col> -->
+            <ion-col>
+              <ion-button expand="block" fill="outline" primary (click)="captureVideo()"><ion-icon name="videocam"></ion-icon> Record Video</ion-button>
+            </ion-col>
+          </ion-row>
+ </ion-card-title>
+ </ion-card-content>
+ </ion-card>
+
+
+  <ion-list>
+      <ion-card>
+          <ion-item *ngFor="let file of mediaFiles" tappable (click)="play(file)" text-wrap>
+              <ion-icon name="videocam"></ion-icon>
+            <ion-label>{{ file.name }}<p>{{ file.size / 1000 / 1000 | number }} MB</p></ion-label>
+            <ion-button  item-end large (click)="play(file)"><ion-icon name="play"></ion-icon></ion-button>
+            <ion-button  item-end large (click)="clearAll(i)"><ion-icon name="close-circle"></ion-icon></ion-button>      
+          </ion-item>
+      </ion-card>
+    </ion-list>
+
+ 
+  <video *ngIf="!file" controls autoplay #myvideo>
+  </video>
+
+</ion-content>
